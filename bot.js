@@ -494,26 +494,7 @@ client.on('message', message => {
     }
 });
 
-client.on('message' , async (message) => {
-       if(message.content.startsWith(`<@${client.user.id}>`)) {
-              
- let responses = [
-        'كيف يمكن اساعدك',
-        'مرحبا',
-        'لا تزعجني',
-        'ماذا تريد ',
-        'هلا',
-        'كيفك',
-        '?',
-        'جرب *help'
-    ]
-    
-    // Fetch a random item from the array
-    let fetched = responses[Math.floor(Math.random() * responses.length)];
-   message.reply(fetched)
-       }
-  
-});
+
 client.on('message', message => {
     if (message.content.startsWith("*avatar")) {
         var mentionned = message.mentions.users.first();
