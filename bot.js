@@ -1,7 +1,20 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-client.on('ready', () => {
-  client.user.setGame(` Watching GaMerZ | By iXMiDo | *help .`,'https://www.twitch.tv/v5bz');
+client.on('ready', function(){
+    var ms = 10000 ;
+    var setGame = [' *help',' This Bot By IxMiDo | Watching The GaMerZ',' Have Fun',' Welcome In GaMerZ Server',' This Bot For Discord GaMerZ Only!'];
+    var i = -1;
+    var j = 0;
+    setInterval(function (){
+        if( i == -1 ){
+            j = 1;
+        }
+        if( i == (setGame.length)-1 ){
+            j = -1;
+        }
+        i = i+j;
+        client.user.setGame(setGame[i],`http://www.twitch.tv/D.JPEI`);
+    }, ms);
   console.log('---------------');
   console.log('GaMerZ -Bot Is Online')
   console.log('---------------')
@@ -26,10 +39,27 @@ if (message.content === '*help') {
       .addField("***say :arrows_counterclockwise:**","**لـ يكرر الكلام اللى تقوله**")
       .addField("***time :alarm_clock:**","**لـ معرفة الساعة**")
       .addField("***date **","**لـ معرفة التاريخ**")
+	   .addField("***server**","**لـــ معرفة معلومات السيرفر**")
+	   .addField("***bot**","**لـــ معرفة معلومات البوت**")
+
 .setColor('RANDOM')
   message.author.sendEmbed(embed);
     }
 });
+client.on('message', message => {
+            if (message.content.startsWith(prefix + "bot")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField(' السيرفرات🌐',`[${client.guilds.size}]  `)
+.addField(' الاعضاء👥 ',` [${client.users.size}] `)
+.addField('الرومات📚 ',`[${client.channels.size}]`) 
+.addField(' البنق🚀 ',`[${Date.now() - message.createdTimestamp}]`) 
+.addField(' Devolope By iXMiDo',`Ahmed Osama`)
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
+
 client.on('message', message => {
      if (message.content === ".servers") {
      let embed = new Discord.RichEmbed()
@@ -84,6 +114,24 @@ if (message.content === '*help') {
   message.author.sendEmbed(embed);
     }
 });
+client.on('message', function(msg) {
+    if(msg.content.startsWith (prefix  + '*server')) {
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.guild.iconURL)
+      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
+      .addField(':globe_with_meridians:** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
+      .addField(':medal:** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField(':red_circle:**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField(':large_blue_circle:**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField(':pencil:**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField(':microphone:**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField(':crown:**__ الأونـر__**',`**${msg.guild.owner}**`,true)
+      .addField(':id:**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
+      .addField(':date:**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
+      msg.channel.send({embed:embed});
+    }
+  });
 client.on('message', message => {
     if (message.content === '*roles') {
         var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
@@ -192,7 +240,7 @@ client.on('message', message => {
     if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
   if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
     let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-    let copy = "Dragon";
+    let copy = "Bot By iXMiDo";
     let request = `Requested By ${message.author.username}`;
     if (!args) return message.reply('```**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**```');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
     msg.react('✅')
@@ -210,10 +258,10 @@ client.on('message', message => {
     var bc = new
        Discord.RichEmbed()
        .setColor('RANDOM')
-       .setTitle('Broadcast')
-       .addField('Server', message.guild.name)
-       .addField('Sender', message.author.username)
-       .addField('Message', args)
+       .setTitle('برودكاست :mega: ')
+       .addField('السيرفر :white_check_mark: ', message.guild.name)
+       .addField('المرسل :sagittarius: ', message.author.username)
+       .addField('الرساله :envelope_with_arrow: ', args)
        .setThumbnail(message.author.avatarURL)
        .setFooter(copy, client.user.avatarURL);
     m.send({ embed: bc })
@@ -237,9 +285,9 @@ client.on('message', msg => {
           if (!msg.mentions.members.first()) return msg.reply('منشن الشخص المحدد')
           if (!args[1]) return msg.reply('اكتب السبب')
           //غير اسم الروم او سوي روم بذا الاسم 
-          if (msg.guild.channels.find('name', 'warns')) {
+          if (msg.guild.channels.find('name', 'punishment')) {
             //اذا غيرت فوق غير هنا كمان 
-            msg.guild.channels.find('name', 'warns').send(`
+            msg.guild.channels.find('name', 'punishment').send(`
           تم اعطائك تنبيه : ${msg.mentions.members.first()}
           لأنك قمت بما يلي
           ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
@@ -247,7 +295,45 @@ client.on('message', msg => {
           }
         }
 })
+client.on('message' , message => {
 
+    if (message.content === "ميدو") {
+     const embed = new Discord.RichEmbed()
+ .setColor("RANDOM")
+ .setThumbnail(client.user.avatarURL)     
+ .setDescription(" **ميدو سوف يرد عليك قربيا** "
+);
+  message.author.sendEmbed(embed);
+   }
+});
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+ 
+
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+    .setDescription(args.join("  "))
+    .setColor(0x23b2d6)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
+
+
+});
     client.on('message', message => {
     const prefix = '*'
 var args = message.content.split(" ").slice(1);    
@@ -479,17 +565,6 @@ client.on('message', message => {
     }
 });
 
-client.on('message', message => {
-     if (message.content === "*bot") {
-     let embed = new Discord.RichEmbed()
-  .setColor("RANDOM")
-  .addField("**Servers:**" , client.guilds.size)
-  .addField("**Users:**", client.users.size)
-  .addField("**channels:**", client.channels.size)
-  .setTimestamp()
-message.channel.sendEmbed(embed);
-    }
-});
 client.on('ready', () => {
    console.log(`----------------`);
       console.log(`GaMerZ Bot- Script By : iXMiDo`);
