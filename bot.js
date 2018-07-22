@@ -855,7 +855,7 @@ client.on("message", message => {
   if (command === "*unmute") {
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **").catch(console.error);
   let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'mod-log');
+  let modlog = client.channels.find('name', 'view-audit-logs');
   let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
   if (!muteRole) return message.reply("** لا يوجد لديك رتبه الميوت'Muted' **").catch(console.error);
   if (message.mentions.users.size < 1) return message.reply('** يجب عليك منشنت شخص اولاً**').catch(console.error);
