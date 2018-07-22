@@ -41,6 +41,12 @@ if (message.content === '*help') {
       .addField("***date **","**لـ معرفة التاريخ**")
 	   .addField("***server**","**لـــ معرفة معلومات السيرفر**")
 	   .addField("***bot**","**لـــ معرفة معلومات البوت**")
+	   .addField("***قوانين**","**لـــ معرفة قوانين السيرفر**")
+	    .addField("***roles**","**لـــ معرفة رولات السيرفر**")
+        .addField("***tag**","**لـــ زخرفة الكلام**")
+        .addField("***رابط **","**لـــا عطاك رابط السيرفر**")
+	    .addField("***sug **","**لاقتراح اي اقتراح تريد ملزوم سبب طويل**")
+
 
 .setColor('RANDOM')
   message.author.sendEmbed(embed);
@@ -76,6 +82,7 @@ if (message.content === '*help') {
 	  .addField("***createcolors :cyclone:**","** لـ اضافة 110 لون**")
       .addField("***kick  :outbox_tray:**","**لـ طرد الأعضاء**")
       .addField("***ban  :no_entry:**","**لـ حظر الأعضاء**")
+      .addField("***warn  :warning:**","**لـ تحذير الاعضاء تحت التطوير**")
 .setColor('RANDOM')
   message.author.sendEmbed(embed);
     }
@@ -115,7 +122,7 @@ if (message.content === '*help') {
     }
 });
 client.on('message', function(msg) {
-    if(msg.content.startsWith (prefix  + '*server')) {
+    if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setThumbnail(msg.guild.iconURL)
@@ -177,33 +184,6 @@ client.on('message', message => {
 
 
 });
-var prefix = "*";
-client.on('message', message => {
-    if(message.content == prefix + 'server') {
-        var servername = message.guild.name
-        var اونر = message.guild.owner
-        var اعضاء = message.guild.memberCount
-        var ايدي = message.guild.id
-        var بلدالسيرفر = message.guild.region
-        var الرومات = message.guild.channels.size
-        var الرتب = message.guild.roles
-        var عمل = message.guild.createdAt
-        var الروم = message.guild.defaultChannel
-        var server = new Discord.RichEmbed()
-        .setThumbnail(message.guild.iconURL)
-        .addField('اسم السيرفر', servername)
-        .addField('اي دي السيرفر ' , [ايدي])
-        .addField('أعضاء السيرفر', اعضاء)
-        .addField('رومات السيرفر', الرومات)
-        .addField('روم الشات الأساسي', الروم)
-        .addField('صاحب السيرفر', اونر)
-        .addField('بلد السيرفر', بلدالسيرفر)
-        .addField('تاريخ افتتاح السيرفر', عمل)
-        .setColor('RANDOM')
-
-        message.channel.sendEmbed(server)
-    }
-});
 client.on("message", message => {
     var prefix = "*";
  
@@ -215,7 +195,7 @@ client.on("message", message => {
       
       message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
       message.channel.sendMessage("", {embed: {
-        title: " :envelope: | **تم ارسال الرساله في الخاص**",
+        title: ":warning:  | **جاري المسح ... **",
         color: 0x06DF00,
         description: "تم مسح الرسائل بنجاح",
         footer: {
@@ -372,7 +352,7 @@ let embed = new Discord.RichEmbed()
 .setFooter(message.author.username, message.author.avatarURL)
 
 message.channel.send({embed});
-    if (!message) return message.reply('**ضع المينشان بشكل صحيح  ❌ **').catch(console.error);
+    if (!message) return message.reply('**ضع المنشن بشمل صحيح  ❌ **').catch(console.error);
 
 }
 
@@ -386,18 +366,9 @@ client.on('message', message => {
     }
 });
 client.on('message', message => {
-     if (message.content === "servers") {
-     let embed = new Discord.RichEmbed()
-  .setColor("RANDOM")
-  .addField("**Servers: **" , client.guilds.size)
-  message.channel.sendEmbed(embed);
-    }
-});
-client.on('message', message => {
 if (message.content === "*help") {
 title: " :envelope: | **تم ارسال الرساله في الخاص**",
 message.reply("**:envelope: | **تم ارسال الرساله في الخاص**")
-message.react("📩")
 
 }
 });
@@ -407,7 +378,7 @@ message.react("📩")
                 if(message.content === prefix + "invite") {
                     let embed = new Discord.RichEmbed ()
                     embed.setTitle("**:arrow_right: للدخول لسيرفر الدعم الفني**")
-                    .setURL("https://discord.gg/b8Jvh7");
+                    .setURL("https://discord.gg/D9GeEbu");
 
                    message.channel.sendEmbed(embed);
                   }
@@ -493,7 +464,6 @@ client.on('message', message => {
   message.channel.sendEmbed(embed);
     }
 });
-
 
 client.on('message', message => {
     if (message.content.startsWith("*avatar")) {
@@ -611,4 +581,14 @@ client.on('message', message => {
   console.log('[id] Send By: ' + message.author.username)
     }
 });
+client.on('message', message => {
+            if (message.content.startsWith(prefix + "الجديد")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField('     **البوت تحت التطوير** ' ,' **تم اضافة الستمريمنق المتحرك , بعض الاكواد الجديده التي سيتم الاعلان عنها قربيا عبر البوت , مبرمج البوت : iXMiDo** ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
+
 client.login("NDY5NDE2ODczMDQyMzc4NzYy.DjHffA.jR97PhBMutFzXq1tqW42R69BscA");
