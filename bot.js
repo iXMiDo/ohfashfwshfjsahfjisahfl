@@ -115,7 +115,6 @@ if (message.content === '!spam') {
 
 
 
-client.login(config.BOT_TOKEN);//login on the selfbot tokens
-client2.login(config.BOT_TOKEN2);//login on the selfbot tokens
-client3.login(config.BOT_TOKEN3);//login on the selfbot tokens
-
+client.login(process.env.BOT_TOKEN);
+client2.login(process.env.BOT_TOKEN2);
+client3.login(process.env.BOT_TOKEN3);
