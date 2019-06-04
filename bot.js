@@ -8,8 +8,7 @@ const client6 = new Discord.Client();
 const client7 = new Discord.Client();
 const client8 = new Discord.Client();
 const client9 = new Discord.Client();
-const client10 = new Discord.Client();
-const client11 = new Discord.Client();
+
 
 
 
@@ -185,40 +184,10 @@ client9.on('message', message => {
         message.channel.send('#rep @Stewart#0005 ')
     }
 });
-client10.on('message', message => {
-    if(message.content === '!daily'){
-        message.channel.send('#daily')
-    }
-});
 
-client10.on('message', message => {
-    if(message.content === '!credits'){
-        message.channel.send('#credits')
-    }
-});
 
-client10.on('message', message => {
-    if(message.content === '!rep'){
-        message.channel.send('#rep @Stewart#0005 ')
-    }
-});
-client11.on('message', message => {
-    if(message.content === '!daily'){
-        message.channel.send('#daily')
-    }
-});
 
-client11.on('message', message => {
-    if(message.content === '!credits'){
-        message.channel.send('#credits')
-    }
-});
 
-client11.on('message', message => {
-    if(message.content === '!rep'){
-        message.channel.send('#rep @Stewart#0005 ')
-    }
-});
 client.on('message', message => { // لا تغير شئ عشان ما تخرب الدنيا
 if (message.content === '!spam') {
       let count = 0;
@@ -338,32 +307,7 @@ if (message.content === '!spam') {
         }
       }
 });
-client10.on('message', message => { // لا تغير شئ عشان ما تخرب الدنيا
-if (message.content === '!spam') {
-      let count = 0;
-      let ecount = 0;
-      for(let x = 0; x < 90000; x++) {
-        message.channel.send(`**Credit Spam , Fram , Credit By stewart , Farm Credit By stewart, ez Farm - كردت اسبام اسبام اسبام اوف ءف اح اح نار ج SASFHASHFASHFJASHJFHASJFHASJHFJAHJKSFHAKJSHFKAJSHFKJAS**[ " ${x} " ]`)
-          .then(m => {
-            count++;
-          })
-          
-        }
-      }
-});
-client11.on('message', message => { // لا تغير شئ عشان ما تخرب الدنيا
-if (message.content === '!spam') {
-      let count = 0;
-      let ecount = 0;
-      for(let x = 0; x < 90000; x++) {
-        message.channel.send(`**Credit Spam , Fram , Credit By stewart , Farm Credit By stewart, ez Farm - كردت اسبام اسبام اسبام اوف ءف اح اح نار ج SASFHASHFASHFJASHJFHASJFHASJHFJAHJKSFHAKJSHFKAJSHFKJAS**[ " ${x} " ]`)
-          .then(m => {
-            count++;
-          })
-          
-        }
-      }
-});
+
 
 client.login(process.env.BOT_TOKEN);
 client2.login(process.env.BOT_TOKEN2);
@@ -374,5 +318,3 @@ client6.login(process.env.BOT_TOKEN6);
 client7.login(process.env.BOT_TOKEN7);
 client8.login(process.env.BOT_TOKEN8);
 client9.login(process.env.BOT_TOKEN9);
-client10.login(process.env.BOT_TOKEN10);
-client11.login(process.env.BOT_TOKEN11);
